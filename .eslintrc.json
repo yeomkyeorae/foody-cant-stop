@@ -1,13 +1,15 @@
-module.exports = {
+{
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "airbnb/hook",
+        "airbnb",
+        "airbnb/hooks",
         "airbnb-typescript",
         "prettier"
     ],
@@ -21,8 +23,18 @@ module.exports = {
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "html",
+        "import"
     ],
     "rules": {
+        "@typescript-eslint/no-var-requires": 0,
+        "import/no-unresolved": "off"
+    },
+    "ignorePatterns": ["webpack.config.js"],
+    "settings": {
+        "import/resolver": {
+          "typescript": {}
+        }
     }
 }

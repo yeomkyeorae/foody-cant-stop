@@ -2,14 +2,14 @@
   "name": "foody-cant-stop",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --mode development --hot",
     "build": "webpack --mode production",
-    "lint": "eslint ./src/**/*.{ts,tsx,js,jsx}",
-    "lint:fix": "eslint --fix ./src/**/*.{ts, tsx, js, jsx}",
-    "prettier": "prettier --write ./src/**/*.{ts, tsx}"
+    "lint": "eslint ./src/**/*.tsx",
+    "lint:fix": "eslint --fix ./src/**/*.tsx",
+    "prettier": "prettier --write ./src/**/*.tsx"
   },
   "keywords": [],
   "author": "",
@@ -25,15 +25,15 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.8.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "ts-loader": "^9.4.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0",
@@ -41,6 +41,11 @@
   },
   "dependencies": {
     "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9"
+    "@types/react-dom": "^18.0.9",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.4",
+    "styled-components": "^5.3.6"
   }
 }
