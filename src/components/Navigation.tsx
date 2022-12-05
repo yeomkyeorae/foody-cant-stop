@@ -20,6 +20,9 @@ function Navigation() {
 				<li>
 					<Link to="/dashboard">Dashboard</Link>
 				</li>
+				<li>
+					<Link to="/calendar">Calendar</Link>
+				</li>
 			</Ul>
 		</nav>
 	);

@@ -7,7 +7,7 @@ function App() {
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoggedIn(true);
-		}, 5000);
+		}, 1000);
 	}, []);
 
 	return <AppRouter isLoggedIn={isLoggedIn} />;
