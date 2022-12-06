@@ -10,19 +10,24 @@ const Ul = styled.ul`
 	list-style: none;
 `;
 
+const Li = styled.li`
+	font-size: 1.5rem;
+	padding: 10px;
+`;
+
 function Navigation() {
 	return (
 		<nav>
 			<Ul>
-				<li>
-					<Link to="/">Home</Link>
-				</li>
-				<li>
-					<Link to="/dashboard">Dashboard</Link>
-				</li>
-				<li>
-					<Link to="/calendar">Calendar</Link>
-				</li>
+				<Li>
+					<Link to="/">홈</Link>
+				</Li>
+				<Li>
+					<Link to="/dashboard">대시보드</Link>
+				</Li>
+				<Li>
+					<Link to="/calendar">메뉴캘린더</Link>
+				</Li>
 			</Ul>
 		</nav>
 	);
