@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = styled.div`
 	position: fixed;
@@ -27,6 +27,8 @@ const ModalContent = styled.div`
 	z-index: 999;
 	top: 50%;
 	left: 50%;
+	display: flex;
+	justify-content: center;
 	transform: translate(-50%, -50%);
 	max-height: 90%;
 	overflow: auto;
@@ -55,6 +57,31 @@ interface Props {
 }
 
 function EnrollModal({ setOpenEnroll }: Props) {
+	const [inputDate, setInputDate] = useState<string>('');
+	const [inputMenu, setInputMenu] = useState<string>('');
+	const [menuItems, setMenuItems] = useState<string[]>([]);
+
+	const dateOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = e.target;
+		setInputDate(value);
+	};
+
+	const menuOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = e.target;
+		setInputMenu(value);
+	};
+
+	const addMenuItem = () => {
+		if (inputMenu !== '') {
+			setMenuItems([...menuItems, inputMenu]);
+			setInputMenu('');
+		}
+	};
+
+	const deleteMenuItem = (index: number) => {
+		setMenuItems(menuItems.filter((_, ix) => index !== ix));
+	};
+
 	return (
 		<Modal>
 			<Overlay />
@@ -62,7 +89,27 @@ function EnrollModal({ setOpenEnroll }: Props) {
 				<CloseBtn title="close" onClick={() => setOpenEnroll(false)}>
 					<FontAwesomeIcon icon={faTimes} />
 				</CloseBtn>
-				It is modal
+				<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+					<div style={{ marginBottom: '10px' }}>
+						<input type="date" value={inputDate} onChange={dateOnChange} />
+					</div>
+					<div>
+						<input value={inputMenu} onChange={menuOnChange} style={{ width: '200px' }} />
+						<button type="button" onClick={() => addMenuItem()}>
+							추가
+						</button>
+					</div>
+					{menuItems.length > 0 && (
+						<ul style={{ padding: '0px' }}>
+							{menuItems.map((menu, index) => (
+								<li key={`menuItem-${index + 1}`}>
+									{menu}
+									<FontAwesomeIcon icon={faTrash} onClick={() => deleteMenuItem(index)} />
+								</li>
+							))}
+						</ul>
+					)}
+				</div>
 			</ModalContent>
 		</Modal>
 	);
