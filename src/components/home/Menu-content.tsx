@@ -29,12 +29,18 @@ const CloseBtn = styled.button`
 	transition: opacity 0.2s ease;
 `;
 
-function MenuContent({ foodItem }: { foodItem: FoodItem }) {
+function MenuContent({
+	foodItem,
+	onDeleteHandler,
+}: {
+	foodItem: FoodItem;
+	onDeleteHandler: (itemKey: number) => void;
+}) {
 	return (
 		<Content>
 			<div>
 				<span>{foodItem.name}</span>
-				<CloseBtn title="close">
+				<CloseBtn title="close" onClick={() => onDeleteHandler(foodItem.key)}>
 					<FontAwesomeIcon icon={faTrash} />
 				</CloseBtn>
 			</div>

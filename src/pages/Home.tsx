@@ -33,6 +33,11 @@ function Home() {
 				name: '소고기뭇국',
 				date: '2022-10-23',
 			},
+			{
+				key: 3,
+				name: '소갈비찜',
+				date: '2022-12-13',
+			},
 		]);
 	}, []);
 
@@ -43,6 +48,10 @@ function Home() {
 
 	const submitHandler = (e: React.SyntheticEvent) => {
 		e.preventDefault();
+	};
+
+	const onDeleteHandler = (itemKey: number) => {
+		setFoodItems(foodItems.filter((item) => item.key !== itemKey));
 	};
 
 	return (
@@ -58,7 +67,7 @@ function Home() {
 			</InputContent>
 			<div>
 				{foodItems.map((foodItem, index) => (
-					<MenuContent key={`foodItem-${index + 1}`} foodItem={foodItem} />
+					<MenuContent key={`foodItem-${index + 1}`} foodItem={foodItem} onDeleteHandler={onDeleteHandler} />
 				))}
 			</div>
 			{openEnroll && <EnrollModal setOpenEnroll={setOpenEnroll} />}
