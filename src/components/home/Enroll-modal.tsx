@@ -71,7 +71,9 @@ function EnrollModal({ setOpenEnroll }: Props) {
 		setInputMenu(value);
 	};
 
-	const addMenuItem = () => {
+	const submitHandler = (e: React.SyntheticEvent) => {
+		e.preventDefault();
+
 		if (inputMenu !== '') {
 			setMenuItems([...menuItems, inputMenu]);
 			setInputMenu('');
@@ -94,10 +96,10 @@ function EnrollModal({ setOpenEnroll }: Props) {
 						<input type="date" value={inputDate} onChange={dateOnChange} />
 					</div>
 					<div>
-						<input value={inputMenu} onChange={menuOnChange} style={{ width: '200px' }} />
-						<button type="button" onClick={() => addMenuItem()}>
-							추가
-						</button>
+						<form onSubmit={submitHandler}>
+							<input value={inputMenu} onChange={menuOnChange} style={{ width: '200px' }} />
+							<button type="submit">추가</button>
+						</form>
 					</div>
 					{menuItems.length > 0 && (
 						<ul style={{ padding: '0px' }}>
@@ -109,6 +111,7 @@ function EnrollModal({ setOpenEnroll }: Props) {
 							))}
 						</ul>
 					)}
+					<button type="submit">등록</button>
 				</div>
 			</ModalContent>
 		</Modal>
