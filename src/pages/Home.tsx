@@ -48,6 +48,11 @@ function Home() {
 
 	const submitHandler = (e: React.SyntheticEvent) => {
 		e.preventDefault();
+
+		const regex = new RegExp(searchMenu);
+		setFoodItems(foodItems.filter((foodItem) => foodItem.name.search(regex) >= 0));
+
+		setSearchMenu('');
 	};
 
 	const onDeleteHandler = (itemKey: number) => {
