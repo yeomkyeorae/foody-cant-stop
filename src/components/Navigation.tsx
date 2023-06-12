@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Ul = styled.ul`
@@ -10,16 +10,16 @@ const Ul = styled.ul`
 	list-style: none;
 `;
 
-const Li = styled.li`
-	font-size: 1.5rem;
-	padding: 10px;
-`;
+// const Li = styled.li`
+// 	font-size: 1.5rem;
+// 	padding: 10px;
+// `;
 
 function Navigation() {
 	return (
 		<nav>
 			<Ul>
-				<Li>
+				{/* <Li>
 					<Link to="/">홈</Link>
 				</Li>
 				<Li>
@@ -27,7 +27,7 @@ function Navigation() {
 				</Li>
 				<Li>
 					<Link to="/calendar">메뉴캘린더</Link>
-				</Li>
+				</Li> */}
 			</Ul>
 		</nav>
 	);
