@@ -1,15 +1,8 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 // import EnrollModal from 'components/home/Enroll-modal';
 // import MenuContent from 'components/home/Menu-content';
 // import FoodItem from 'interfaces';
-
-const Contents = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-`;
+import FoodyCalendar from '@/components/calendar/FoodyCalendar';
 
 // const InputContent = styled.div`
 // 	display: flex;
@@ -59,26 +52,7 @@ function Home() {
 	// 	setFoodItems(foodItems.filter((item) => item.key !== itemKey));
 	// };
 
-	return (
-		<Contents>
-			calendar menus
-			{/* <InputContent>
-				<form onSubmit={submitHandler}>
-					<input value={searchMenu} onChange={onChange} style={{ width: '300px' }} />
-					<button type="submit">검색</button>
-				</form>
-				<button type="button" onClick={() => setOpenEnroll(true)}>
-					메뉴 등록
-				</button>
-			</InputContent>
-			<div>
-				{foodItems.map((foodItem, index) => (
-					<MenuContent key={`foodItem-${index + 1}`} foodItem={foodItem} onDeleteHandler={onDeleteHandler} />
-				))}
-			</div>
-			{openEnroll && <EnrollModal setOpenEnroll={setOpenEnroll} />} */}
-		</Contents>
-	);
+	return <FoodyCalendar />;
 }
 
 export default Home;
