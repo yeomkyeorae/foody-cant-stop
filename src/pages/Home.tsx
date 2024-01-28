@@ -1,58 +1,58 @@
-import React, { useEffect } from 'react';
-// import EnrollModal from 'components/home/Enroll-modal';
-// import MenuContent from 'components/home/Menu-content';
-// import FoodItem from 'interfaces';
+import React, { useState, useEffect } from 'react';
 import FoodyCalendar from '@/components/calendar/FoodyCalendar';
-
-// const InputContent = styled.div`
-// 	display: flex;
-// 	justify-content: content;
-// `;
+import menusJson from '../../public/menus.json';
+import { MenusJson, Menu } from 'interfaces';
+import MenuModal from '@/components/home/Modal';
 
 function Home() {
-	// const [searchMenu, setSearchMenu] = useState<string>('');
-	// const [openEnroll, setOpenEnroll] = useState<boolean>(false);
-	// const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
+  const [openModal, setOpenModal] = useState(false);
 
-	useEffect(() => {
-		// setFoodItems([
-		// 	{
-		// 		key: 1,
-		// 		name: '소불고기',
-		// 		date: '2022-10-22',
-		// 	},
-		// 	{
-		// 		key: 2,
-		// 		name: '소고기뭇국',
-		// 		date: '2022-10-23',
-		// 	},
-		// 	{
-		// 		key: 3,
-		// 		name: '소갈비찜',
-		// 		date: '2022-12-13',
-		// 	},
-		// ]);
-	}, []);
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
+        if(currentMonth === 1) {
+          setCurrentYear(currentYear - 1);
+          setCurrentMonth(12);
+        } else {
+          setCurrentMonth(currentMonth - 1);
+        }
+      } else if (event.key === 'ArrowRight') {
+        if(currentMonth === 12) {
+          setCurrentYear(currentYear + 1);
+          setCurrentMonth(1);
+        } else {
+          setCurrentMonth(currentMonth + 1);
+        }
+      }
+    };
 
-	// const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	const { value } = e.target;
-	// 	setSearchMenu(value);
-	// };
+    window.addEventListener('keydown', handleKeyPress);
 
-	// const submitHandler = (e: React.SyntheticEvent) => {
-	// 	e.preventDefault();
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [currentYear, currentMonth]);
 
-	// 	const regex = new RegExp(searchMenu);
-	// 	setFoodItems(foodItems.filter((foodItem) => foodItem.name.search(regex) >= 0));
+  const menuItems: MenusJson = menusJson;
+  const currentItems = menuItems[currentYear];
+  const filteredMenus: Menu[] = currentItems ? (currentItems[currentMonth] ?? []) : [];
 
-	// 	setSearchMenu('');
-	// };
+  const currentDate = `${currentYear}-${currentMonth}`;
 
-	// const onDeleteHandler = (itemKey: number) => {
-	// 	setFoodItems(foodItems.filter((item) => item.key !== itemKey));
-	// };
-
-	return <FoodyCalendar />;
+	return (
+    <>
+      <FoodyCalendar 
+        menus={filteredMenus} 
+        currentDate={currentDate} 
+        setCurrentYear={setCurrentYear} 
+        setCurrentMonth={setCurrentMonth} 
+        setOpenModal={setOpenModal} 
+      />
+      {openModal && <MenuModal setOpenEnroll={setOpenModal} />}
+    </>
+  );
 }
 
 export default Home;
